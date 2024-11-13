@@ -20,11 +20,4 @@ class FindRecipeController {
     Recipe getRecipeByName(@PathVariable String name) {
         return new Recipe(recipeFinder.findRecipe(name));
     }
-
-    @PostMapping("/recipe")
-    Recipe getRecipe() {
-        return new Recipe(recipeFinder.findRecipe());
-    }
-
-
 }

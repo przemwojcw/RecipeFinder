@@ -1,0 +1,7 @@
+#app:
+#  environment: local
+spring:
+  data:
+    redis:
+      host: "localhost"
+      port: 6379

@@ -1,13 +1,14 @@
 package com.pw.recipeFinder.domain.recipefinder;
 
 class DefaultRecipeFinder implements RecipeFinder {
-    @Override
-    public String findRecipe() {
-        return "recipe";
+    private final RecipeStorage recipeStorage;
+
+    DefaultRecipeFinder(RecipeStorage recipeStorage) {
+        this.recipeStorage = recipeStorage;
     }
 
     @Override
     public String findRecipe(String name) {
-        return "";
+        return recipeStorage.findRecipe(name);
     }
 }

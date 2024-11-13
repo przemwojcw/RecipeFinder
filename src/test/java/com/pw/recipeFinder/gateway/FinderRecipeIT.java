@@ -12,10 +12,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.io.UnsupportedEncodingException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(properties = { "app.environment=integrationTest" })
 @AutoConfigureMockMvc
 class FinderRecipeIT {
 
@@ -26,13 +26,18 @@ class FinderRecipeIT {
     private ObjectMapper objectMapper;
 
     @Test
-    void shouldAlwaysReturnMockRecipe() throws Exception {
-        MvcResult result = this.mockMvc.perform(post("/recipe"))
+    void shouldReturnRecipeForGivenName() throws Exception {
+        // given
+        final var recipeName = "testName";
+
+        //when
+        MvcResult result = this.mockMvc.perform(get("/recipe/"+recipeName))
                 .andExpect(status().isOk())
                 .andReturn();
 
+        // then
         final var recipe = getBody(result, Recipe.class);
-        assertThat(recipe.text()).isEqualTo("recipe");
+        assertThat(recipe.text()).isEqualTo("testName");
     }
 
     private <T> T getBody(MvcResult result, Class<T> type) throws JsonProcessingException, UnsupportedEncodingException {

@@ -4,9 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Config {
+public class DomainConfig {
     @Bean
-    RecipeFinder recipeFinder() {
-        return new DefaultRecipeFinder();
+    RecipeFinder recipeFinder(RecipeStorage recipeStorage) {
+        return new DefaultRecipeFinder(recipeStorage);
     }
 }
