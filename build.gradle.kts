@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis:3.3.5")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("com.redis:testcontainers-redis:2.2.2")
+	testImplementation("org.springframework:spring-test:6.1.14")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
